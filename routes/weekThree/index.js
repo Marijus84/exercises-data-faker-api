@@ -21,9 +21,10 @@ const routes = (app) => {
 
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
-  app.post(`/${NAME}/test-post`, (req, res) =>
-    res.json({ success: true, token: req.test })
-  );
+  app.post(`/${NAME}/test-post`, (req, res) => {
+    console.log(req);
+    res.send("all good");
+  });
 };
 
 module.exports = routes;
