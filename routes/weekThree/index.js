@@ -42,7 +42,7 @@ const routes = (app) => {
           throw error;
         }
         console.log(res);
-        res.status(200).json(results.rows);
+        // res.status(200).json(results.rows);
       })
     );
   });
