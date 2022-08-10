@@ -25,7 +25,7 @@ const client = new Client({
   },
 });
 
-const routes = async (app) => {
+const routes = (app) => {
   app.get(`/${NAME}/selected`, (req, res) => res.json(generateSelected()));
 
   app.get(`/${NAME}/translations`, (req, res) =>
@@ -43,10 +43,8 @@ const routes = async (app) => {
       for (let row of results.rows) {
         console.log(JSON.stringify(row));
       }
+      client.end();
       res.status(201).send(results.rows);
-      setTimeout(() => {
-        client.end();
-      }, 3000);
 
       // console.log("--------------", results.rows[0]);
       // res.status(200);
@@ -74,17 +72,12 @@ const routes = async (app) => {
         if (error) {
           throw error;
         }
+        client.end();
         res.status(200);
       }
     );
-    client.end();
 
-    // client
-    //   .query("INSERT INTO public.test (id) VALUES ($1) RETURNING *", [id])
-    //   .then((result) => res.status(200))
-    //   .then(() => client.end());
-
-    // console.log(req);
+    //console.log(req);
     // res.send("all good");
   });
 };
