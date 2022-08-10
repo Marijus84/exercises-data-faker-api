@@ -41,7 +41,7 @@ const routes = (app) => {
         throw error;
       }
       // console.log(results);
-      res.status(200);
+      // res.status(200);
     });
   });
   app.get(`/${NAME}/wedding`, (req, res) =>
