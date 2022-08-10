@@ -24,9 +24,8 @@ const routes = (app) => {
   );
 
   app.get(`/${NAME}/party`, (req, res) => {
-    const id = parseInt(request.params.id);
     res.json(
-      pool.query("SELECT * FROM test ORDER BY id ASC", (error, results) => {
+      pool.query("SELECT * FROM test", (error, results) => {
         if (error) {
           throw error;
         }
