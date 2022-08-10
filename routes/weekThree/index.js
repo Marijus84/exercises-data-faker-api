@@ -60,8 +60,9 @@ const routes = (app) => {
   app.post(`/${NAME}/test-post`, (req, res) => {
     client.connect();
 
-    const { id } = req.body;
+    let { id } = req.body;
     console.log(req.body);
+    id = Number(id);
 
     client.query(
       "INSERT INTO public.test (id) VALUES ($1) RETURNING *",
