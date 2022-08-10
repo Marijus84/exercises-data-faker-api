@@ -44,6 +44,7 @@ const routes = (app) => {
         console.log(JSON.stringify(row));
       }
       res.status(201).send(results.rows);
+      client.end();
       // console.log("--------------", results.rows[0]);
       // res.status(200);
     });
@@ -57,12 +58,11 @@ const routes = (app) => {
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
   app.post(`/${NAME}/test-post`, (req, res) => {
-    client.connect();
-
     let { id } = req.body;
     console.log("-+-+-+--++");
     console.log(req.body);
     id = parseInt(id);
+    client.connect();
 
     client.query(
       "INSERT INTO public.test (id) VALUES ($1) RETURNING *",
@@ -74,6 +74,7 @@ const routes = (app) => {
         res.status(200);
       }
     );
+    client.end();
     // console.log(req);
     // res.send("all good");
   });
