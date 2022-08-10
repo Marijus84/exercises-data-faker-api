@@ -16,9 +16,9 @@ const {
 //   port: 5432,
 // });
 
-const Pool = require("pg").Pool;
+const { Client } = require("pg");
 
-const client = new Pool({
+const client = new Client({
   connectionString: `postgres://vqgjkxxmxlnuvq:6b219d81fe0b192ca16706e6f72ff084c7d1f341eb92991f030ebb1a8289e45f@ec2-54-155-110-181.eu-west-1.compute.amazonaws.com:5432/d97np0smkrhvot`,
   ssl: {
     rejectUnauthorized: false,
@@ -33,6 +33,8 @@ const routes = (app) => {
   );
 
   app.get(`/${NAME}/party`, (req, res) => {
+    client.connect();
+
     client.query("SELECT * FROM public.test", (error, results) => {
       if (error) {
         console.log(error);
@@ -42,15 +44,18 @@ const routes = (app) => {
         console.log(JSON.stringify(row));
       }
       res.status(201).send(results.rows);
+
       // console.log("--------------", results.rows[0]);
       // res.status(200);
     });
+    client.end();
     // console.log(1984);
     // res.status(200).json("i got you");
   });
   app.get(`/${NAME}/wedding`, (req, res) =>
     res.json(generatePartyGuests("plusOne"))
   );
+
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
   app.post(`/${NAME}/test-post`, (req, res) => {
@@ -58,7 +63,7 @@ const routes = (app) => {
     console.log("-+-+-+--++");
     console.log(req);
     id = parseInt(id);
-
+    client.connect();
     client.query(
       "INSERT INTO public.test (id) VALUES ($1) RETURNING *",
       [id],
@@ -69,6 +74,7 @@ const routes = (app) => {
         res.status(200);
       }
     );
+    client.end();
     // console.log(req);
     // res.send("all good");
   });
