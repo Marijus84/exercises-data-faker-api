@@ -25,8 +25,6 @@ const client = new Client({
   },
 });
 
-client.connect();
-
 const routes = (app) => {
   app.get(`/${NAME}/selected`, (req, res) => res.json(generateSelected()));
 
@@ -35,6 +33,8 @@ const routes = (app) => {
   );
 
   app.get(`/${NAME}/party`, (req, res) => {
+    client.connect();
+
     client.query("SELECT * FROM public.test", (error, results) => {
       if (error) {
         console.log(error);
@@ -58,6 +58,8 @@ const routes = (app) => {
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
   app.post(`/${NAME}/test-post`, (req, res) => {
+    client.connect();
+
     const { id } = req.body;
     console.log(req.body);
 
