@@ -23,7 +23,16 @@ const routes = (app) => {
     res.json(generateTranslations())
   );
 
-  app.get(`/${NAME}/party`, (req, res) => res.json(generatePartyGuests("vip")));
+  app.get(`/${NAME}/party`, (req, res) =>
+    res.json(
+      pool.query("SELECT * FROM test ORDER BY id ASC", (error, results) => {
+        if (error) {
+          throw error;
+        }
+        // response.status(200).json(results.rows)
+      })
+    )
+  );
   app.get(`/${NAME}/wedding`, (req, res) =>
     res.json(generatePartyGuests("plusOne"))
   );
