@@ -35,14 +35,14 @@ const routes = (app) => {
   );
 
   app.get(`/${NAME}/party`, (req, res) => {
-    // client.query("SELECT * FROM public.test", (error, results) => {
-    //   if (error) {
-    //     console.log(error);
-    //     throw error;
-    //   }
-    //   // console.log(results);
-    //   // res.status(200);
-    // });
+    client.query("SELECT * FROM test", (error, results) => {
+      if (error) {
+        console.log(error);
+        throw error;
+      }
+      console.log(results.rows[0]);
+      // res.status(200);
+    });
     console.log(1984);
     res.status(200).json("i got you");
   });
