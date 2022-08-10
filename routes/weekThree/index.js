@@ -67,24 +67,22 @@ const routes = async (app) => {
     id = parseInt(id);
     client.connect();
 
-    // client.query(
-    //   "INSERT INTO public.test (id) VALUES ($1) RETURNING *",
-    //   [id],
-    //   (error, results) => {
-    //     if (error) {
-    //       throw error;
-    //     }
-    //     res.status(200);
-    //   }
-    // );
-    // setTimeout(() => {
-    //   client.end();
-    // }, 3000);
+    client.query(
+      "INSERT INTO public.test (id) VALUES ($1) RETURNING *",
+      [id],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        res.status(200);
+      }
+    );
+    client.end();
 
-    client
-      .query("INSERT INTO public.test (id) VALUES ($1) RETURNING *", [id])
-      .then((result) => res.status(200))
-      .then(() => client.end());
+    // client
+    //   .query("INSERT INTO public.test (id) VALUES ($1) RETURNING *", [id])
+    //   .then((result) => res.status(200))
+    //   .then(() => client.end());
 
     // console.log(req);
     // res.send("all good");
