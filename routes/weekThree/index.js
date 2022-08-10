@@ -29,7 +29,7 @@ const routes = (app) => {
         if (error) {
           throw error;
         }
-        // response.status(200).json(results.rows)
+        response.status(200).json(results.rows);
       })
     )
   );
