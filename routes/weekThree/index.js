@@ -62,7 +62,7 @@ const routes = (app) => {
 
     let { id } = req.body;
     console.log(req.body);
-    id = Number(id);
+    id = parseInt(id);
 
     client.query(
       "INSERT INTO public.test (id) VALUES ($1) RETURNING *",
