@@ -32,6 +32,7 @@ const routes = (app) => {
 
   app.post(`/${NAME}/test-post`, (req, res) => {
     const { id } = req.body;
+    console.log(req.body);
 
     pool.query(
       "INSERT INTO test (id) VALUES ($1) RETURNING *",
