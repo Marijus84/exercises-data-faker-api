@@ -54,10 +54,11 @@ const routes = (app) => {
   app.get(`/${NAME}/wedding`, (req, res) =>
     res.json(generatePartyGuests("plusOne"))
   );
-  client.connect();
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
   app.post(`/${NAME}/test-post`, (req, res) => {
+    client.connect();
+
     let { id } = req.body;
     console.log("-+-+-+--++");
     console.log(req);
