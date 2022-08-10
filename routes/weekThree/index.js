@@ -25,7 +25,7 @@ const client = new Client({
   },
 });
 
-client.connect();
+// client.connect();
 
 const routes = (app) => {
   app.get(`/${NAME}/selected`, (req, res) => res.json(generateSelected()));
