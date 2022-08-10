@@ -35,7 +35,7 @@ const routes = (app) => {
   );
 
   app.get(`/${NAME}/party`, (req, res) => {
-    client.query("SELECT * FROM test", (error, results) => {
+    client.query("SELECT * FROM public.test", (error, results) => {
       if (error) {
         console.log(error);
         throw error;
