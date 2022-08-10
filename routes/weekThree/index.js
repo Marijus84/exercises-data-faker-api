@@ -44,7 +44,10 @@ const routes = (app) => {
         console.log(JSON.stringify(row));
       }
       res.status(201).send(results.rows);
-      client.end();
+      setTimeout(() => {
+        client.end();
+      }, 3000);
+
       // console.log("--------------", results.rows[0]);
       // res.status(200);
     });
@@ -74,8 +77,9 @@ const routes = (app) => {
         res.status(200);
       }
     );
-    client.end();
-    // console.log(req);
+    setTimeout(() => {
+      client.end();
+    }, 3000); // console.log(req);
     // res.send("all good");
   });
 };
