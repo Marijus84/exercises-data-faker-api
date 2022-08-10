@@ -34,7 +34,7 @@ const routes = (app) => {
     const { id } = req.body;
 
     pool.query(
-      "INSERT INTO users (id) VALUES ($1) RETURNING *",
+      "INSERT INTO test (id) VALUES ($1) RETURNING *",
       [id],
       (error, results) => {
         if (error) {
