@@ -62,7 +62,7 @@ const routes = (app) => {
 
     let { id } = req.body;
     console.log("-+-+-+--++");
-    console.log(req.body);
+    console.log(req);
     id = parseInt(id);
 
     client.query(
