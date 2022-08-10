@@ -43,7 +43,7 @@ const routes = (app) => {
       for (let row of results.rows) {
         console.log(JSON.stringify(row));
       }
-      res.status(201).send(results.rows[0]);
+      res.status(201).send(results.rows);
       client.end();
       // console.log("--------------", results.rows[0]);
       // res.status(200);
@@ -61,14 +61,15 @@ const routes = (app) => {
     const { id } = req.body;
     console.log(req.body);
 
-    pool.query(
-      "INSERT INTO test (id) VALUES ($1) RETURNING *",
+    client.query(
+      "INSERT INTO public.test (id) VALUES ($1) RETURNING *",
       [id],
       (error, results) => {
         if (error) {
           throw error;
         }
-        res.status(201).send(`User added with ID: ${results.rows[0].id}`);
+        res.status(200);
+        client.end();
       }
     );
     // console.log(req);
