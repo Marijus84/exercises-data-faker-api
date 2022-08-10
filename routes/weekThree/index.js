@@ -40,7 +40,7 @@ const routes = (app) => {
         console.log(error);
         throw error;
       }
-      console.log(results.rows[0]);
+      console.log("--------------", results.rows[0]);
       // res.status(200);
     });
     console.log(1984);
