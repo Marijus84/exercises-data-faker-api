@@ -40,8 +40,8 @@ const routes = (app) => {
         console.log(error);
         throw error;
       }
-      console.log(results);
-      res.status(200).json(results);
+      // console.log(results);
+      res.status(200);
     });
   });
   app.get(`/${NAME}/wedding`, (req, res) =>
