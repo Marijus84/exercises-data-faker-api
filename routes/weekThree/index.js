@@ -22,8 +22,20 @@ const routes = (app) => {
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
   app.post(`/${NAME}/test-post`, (req, res) => {
-    console.log(req);
-    res.send("all good");
+    const { id } = req.body;
+
+    pool.query(
+      "INSERT INTO users (id) VALUES ($1) RETURNING *",
+      [id],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        res.status(201).send(`User added with ID: ${results.rows[0].id}`);
+      }
+    );
+    // console.log(req);
+    // res.send("all good");
   });
 };
 
