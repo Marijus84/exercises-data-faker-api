@@ -43,6 +43,7 @@ const routes = (app) => {
       for (let row of results.rows) {
         console.log(JSON.stringify(row));
       }
+      res.status(201).json(row);
       client.end();
       // console.log("--------------", results.rows[0]);
       // res.status(200);
