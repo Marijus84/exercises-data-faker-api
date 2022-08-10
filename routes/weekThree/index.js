@@ -35,15 +35,14 @@ const routes = (app) => {
   );
 
   app.get(`/${NAME}/party`, (req, res) => {
-    const resultatas = client.query("SELECT * FROM test", (error, results) => {
+    client.query("SELECT * FROM test", (error, results) => {
       if (error) {
         console.log(error);
         throw error;
       }
       console.log(results);
-      // res.status(200).json(results.rows);
+      res.status(200).json(results);
     });
-    res.json(resultatas);
   });
   app.get(`/${NAME}/wedding`, (req, res) =>
     res.json(generatePartyGuests("plusOne"))
