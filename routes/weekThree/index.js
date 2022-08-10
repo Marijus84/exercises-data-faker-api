@@ -61,6 +61,7 @@ const routes = (app) => {
     client.connect();
 
     let { id } = req.body;
+    console.log("-+-+-+--++");
     console.log(req.body);
     id = parseInt(id);
 
