@@ -23,7 +23,8 @@ const routes = (app) => {
     res.json(generateTranslations())
   );
 
-  app.get(`/${NAME}/party`, (req, res) =>
+  app.get(`/${NAME}/party`, (req, res) => {
+    const id = parseInt(request.params.id);
     res.json(
       pool.query("SELECT * FROM test ORDER BY id ASC", (error, results) => {
         if (error) {
@@ -31,8 +32,8 @@ const routes = (app) => {
         }
         response.status(200).json(results.rows);
       })
-    )
-  );
+    );
+  });
   app.get(`/${NAME}/wedding`, (req, res) =>
     res.json(generatePartyGuests("plusOne"))
   );
