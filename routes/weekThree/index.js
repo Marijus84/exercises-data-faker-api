@@ -40,11 +40,14 @@ const routes = (app) => {
         console.log(error);
         throw error;
       }
-      console.log("--------------", results.rows[0]);
+      for (let row of results.rows) {
+        console.log(JSON.stringify(row));
+      }
+      // console.log("--------------", results.rows[0]);
       // res.status(200);
     });
-    console.log(1984);
-    res.status(200).json("i got you");
+    // console.log(1984);
+    // res.status(200).json("i got you");
   });
   app.get(`/${NAME}/wedding`, (req, res) =>
     res.json(generatePartyGuests("plusOne"))
