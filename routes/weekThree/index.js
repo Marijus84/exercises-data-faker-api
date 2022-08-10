@@ -25,7 +25,7 @@ const client = new Client({
   },
 });
 
-client.connect();
+// client.connect();
 
 const routes = (app) => {
   app.get(`/${NAME}/selected`, (req, res) => res.json(generateSelected()));
@@ -35,14 +35,16 @@ const routes = (app) => {
   );
 
   app.get(`/${NAME}/party`, (req, res) => {
-    client.query("SELECT * FROM public.test", (error, results) => {
-      if (error) {
-        console.log(error);
-        throw error;
-      }
-      // console.log(results);
-      // res.status(200);
-    });
+    // client.query("SELECT * FROM public.test", (error, results) => {
+    //   if (error) {
+    //     console.log(error);
+    //     throw error;
+    //   }
+    //   // console.log(results);
+    //   // res.status(200);
+    // });
+    console.log(1984);
+    res.status(200).json("i got you");
   });
   app.get(`/${NAME}/wedding`, (req, res) =>
     res.json(generatePartyGuests("plusOne"))
