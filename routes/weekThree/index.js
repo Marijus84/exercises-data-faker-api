@@ -41,7 +41,7 @@ const routes = (app) => {
           console.log(error);
           throw error;
         }
-        console.log(res);
+        console.log(results);
         // res.status(200).json(results.rows);
       })
     );
