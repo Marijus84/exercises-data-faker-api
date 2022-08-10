@@ -44,7 +44,6 @@ const routes = (app) => {
         console.log(JSON.stringify(row));
       }
       res.status(201).send(results.rows);
-      client.end();
       // console.log("--------------", results.rows[0]);
       // res.status(200);
     });
@@ -73,7 +72,6 @@ const routes = (app) => {
           throw error;
         }
         res.status(200);
-        client.end();
       }
     );
     // console.log(req);
