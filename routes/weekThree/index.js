@@ -27,6 +27,7 @@ const routes = (app) => {
     res.json(
       pool.query("SELECT * FROM test", (error, results) => {
         if (error) {
+          console.log(error);
           throw error;
         }
         response.status(200).json(results.rows);
