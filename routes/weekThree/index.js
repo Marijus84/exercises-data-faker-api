@@ -55,7 +55,7 @@ const routes = (app) => {
     console.log(request);
 
     pool.query(
-      "DELETE FROM public.test WHERE id = $1, [id]",
+      "DELETE FROM public.test WHERE id = $1"[id],
       (error, results) => {
         if (error) {
           throw error;
@@ -86,4 +86,4 @@ const routes = (app) => {
 
 module.exports = routes;
 
-//persidaryti ant async;
+//! ties delete sustojau, kazko dar neveikia;
