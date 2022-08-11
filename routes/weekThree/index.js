@@ -7,23 +7,22 @@ const {
   getMeme,
 } = require(path.resolve(__dirname, "utils"));
 
-// const Pool = require("pg").Pool;
-// const pool = new Pool({
-//   user: "vqgjkxxmxlnuvq",
-//   host: "ec2-54-155-110-181.eu-west-1.compute.amazonaws.com",
-//   database: "d97np0smkrhvot",
-//   password: "6b219d81fe0b192ca16706e6f72ff084c7d1f341eb92991f030ebb1a8289e45f",
-//   port: 5432,
-// });
-
-const { Client } = require("pg");
-
-const client = new Client({
+const Pool = require("pg").Pool;
+const pool = new Pool({
   connectionString: `postgres://vqgjkxxmxlnuvq:6b219d81fe0b192ca16706e6f72ff084c7d1f341eb92991f030ebb1a8289e45f@ec2-54-155-110-181.eu-west-1.compute.amazonaws.com:5432/d97np0smkrhvot`,
   ssl: {
     rejectUnauthorized: false,
   },
 });
+
+// const { Client } = require("pg");
+
+// const client = new Client({
+//   connectionString: `postgres://vqgjkxxmxlnuvq:6b219d81fe0b192ca16706e6f72ff084c7d1f341eb92991f030ebb1a8289e45f@ec2-54-155-110-181.eu-west-1.compute.amazonaws.com:5432/d97np0smkrhvot`,
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
 
 const routes = (app) => {
   app.get(`/${NAME}/selected`, (req, res) => res.json(generateSelected()));
@@ -32,26 +31,18 @@ const routes = (app) => {
     res.json(generateTranslations())
   );
 
-  app.get(`/${NAME}/party`, (req, res) => {
-    client.connect();
-
-    client.query("SELECT * FROM public.test", (error, results) => {
+  app.get(`/${NAME}/party`, (request, response) => {
+    console.log(1984);
+    pool.query("SELECT * FROM public.test", (error, results) => {
+      console.log(1985);
       if (error) {
         console.log(error);
         throw error;
       }
-      for (let row of results.rows) {
-        console.log(JSON.stringify(row));
-      }
-      client.end();
-      res.status(201).send(results.rows);
-
-      // console.log("--------------", results.rows[0]);
-      // res.status(200);
+      res.status(200).json(results.rows);
     });
-    // console.log(1984);
-    // res.status(200).json("i got you");
   });
+
   app.get(`/${NAME}/wedding`, (req, res) =>
     res.json(generatePartyGuests("plusOne"))
   );
