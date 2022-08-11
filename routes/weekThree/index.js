@@ -50,9 +50,9 @@ const routes = (app) => {
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
   app.post(`/${NAME}/test-post`, (request, reponse) => {
-    let { id } = req.body;
+    let { id } = request.body;
     console.log("-+-+-+--++");
-    console.log(req.body);
+    console.log(request.body);
     id = parseInt(id);
 
     pool.query(
