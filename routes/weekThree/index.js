@@ -64,7 +64,7 @@ const routes = (app) => {
         }
         response
           .status(201)
-          .send(`user added with ID: ${JSON.stringify(JSON.parse(results))}`);
+          .send(`user added with ID: ${JSON.stringify(results)}`);
       }
     );
   });
