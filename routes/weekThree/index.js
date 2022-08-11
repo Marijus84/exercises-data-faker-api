@@ -49,6 +49,22 @@ const routes = (app) => {
 
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
+  app.delete(`/${NAME}/delete`, (request, response) => {
+    let it = parseInt(request.params.id);
+    console.log("-+-+-+--++");
+    console.log(request);
+
+    pool.query(
+      "DELETE FROM public.test WHERE id = $1, [id]",
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(201).send(`user deleted`);
+      }
+    );
+  });
+
   app.post(`/${NAME}/test-post`, (request, response) => {
     let { id } = request.body;
     console.log("-+-+-+--++");
@@ -62,9 +78,7 @@ const routes = (app) => {
         if (error) {
           throw error;
         }
-        response
-          .status(201)
-          .send(`user added with ID: ${JSON.stringify(results)}`);
+        response.status(201).send(`user added`);
       }
     );
   });
