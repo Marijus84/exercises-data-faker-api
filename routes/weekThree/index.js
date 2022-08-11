@@ -62,7 +62,7 @@ const routes = (app) => {
         if (error) {
           throw error;
         }
-        response.status(201).send(`user added with ID: ${results}`);
+        response.status(201).send(`user added with ID: ${results.insertId}`);
       }
     );
   });
