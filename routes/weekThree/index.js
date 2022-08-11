@@ -49,14 +49,13 @@ const routes = (app) => {
 
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
-  app.post(`/${NAME}/test-post`, (req, res) => {
+  app.post(`/${NAME}/test-post`, (request, reponse) => {
     let { id } = req.body;
     console.log("-+-+-+--++");
     console.log(req.body);
     id = parseInt(id);
-    client.connect();
 
-    client.query(
+    pool.query(
       "INSERT INTO public.test (id) VALUES ($1) RETURNING *",
       [id],
       (error, results) => {
@@ -64,12 +63,9 @@ const routes = (app) => {
           throw error;
         }
         client.end();
-        res.status(200);
+        response.status(201).send("user added with ID");
       }
     );
-
-    //console.log(req);
-    // res.send("all good");
   });
 };
 
