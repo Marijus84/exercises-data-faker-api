@@ -49,7 +49,7 @@ const routes = (app) => {
 
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
-  app.delete(`/${NAME}/delete`, (request, response) => {
+  app.delete(`/${NAME}/delete/:id`, (request, response) => {
     let it = parseInt(request.params.id);
     console.log("-+-+-+--++");
     console.log(request);
