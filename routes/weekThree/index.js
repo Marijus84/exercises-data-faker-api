@@ -49,7 +49,7 @@ const routes = (app) => {
 
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
-  app.post(`/${NAME}/test-post`, (request, reponse) => {
+  app.post(`/${NAME}/test-post`, (request, response) => {
     let { id } = request.body;
     console.log("-+-+-+--++");
     console.log(request.body);
