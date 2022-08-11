@@ -62,7 +62,9 @@ const routes = (app) => {
         if (error) {
           throw error;
         }
-        response.status(201).send(`user added with ID: ${results.insertId}`);
+        response
+          .status(201)
+          .send(`user added with ID: ${JSON.stringify(JSON.parse(results))}`);
       }
     );
   });
