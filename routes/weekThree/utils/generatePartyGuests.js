@@ -2,19 +2,22 @@ const { name, random } = require("faker");
 const { firstName, lastName } = name;
 const { uuid, boolean } = random;
 const myStudents = [
-  "Darek",
-  "Domantas",
-  "Eglė",
-  "Gabrielė",
-  "Giedrius",
-  "Ilona",
-  "Jovaras",
-  "Laimontas",
+  "Andrius",
+  "Artūras",
+  "Daniel",
+  "Domas",
+  "Dovilė",
+  "Dovydas",
+  "Eimantas",
+  "Greta",
+  "Jonas",
+  "Kasparas",
   "Lukas",
-  "Mindaugas",
+  "Martynas",
+  "Neivydas",
   "Povilas",
-  "Žilvinas",
-  "Ignas",
+  "Robert",
+  "Vaidas",
 ];
 
 const generatePartyGuests = (key) => {

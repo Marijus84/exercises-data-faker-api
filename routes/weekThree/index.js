@@ -31,17 +31,16 @@ const routes = (app) => {
     res.json(generateTranslations())
   );
 
-  app.get(`/${NAME}/party`, (request, response) => {
-    console.log(1984);
-    pool.query("SELECT * FROM public.test", (error, results) => {
-      console.log(1985);
-      if (error) {
-        console.log(error);
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    });
-  });
+  // app.get(`/${NAME}/party`, (request, response) => {
+  //   pool.query("SELECT * FROM public.test", (error, results) => {
+  //     if (error) {
+  //       console.log(error);
+  //       throw error;
+  //     }
+  //     response.status(200).json(results.rows);
+  //   });
+  // });
+  app.get(`/${NAME}/party`, (req, res) => res.json(generatePartyGuests()));
 
   app.get(`/${NAME}/wedding`, (req, res) =>
     res.json(generatePartyGuests("plusOne"))

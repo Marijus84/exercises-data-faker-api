@@ -1,3 +1,3 @@
-const NAME = 'week-3';
+const NAME = "vigi-33";
 
 module.exports = { NAME };
