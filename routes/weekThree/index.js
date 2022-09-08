@@ -40,7 +40,7 @@ const routes = (app) => {
   //     response.status(200).json(results.rows);
   //   });
   // });
-  app.get(`/${NAME}/party`, (req, res) => res.json(generatePartyGuests()));
+  app.get(`/${NAME}/party`, (req, res) => res.json(generatePartyGuests("vip")));
 
   app.get(`/${NAME}/wedding`, (req, res) =>
     res.json(generatePartyGuests("plusOne"))
