@@ -51,7 +51,7 @@ const routes = (app) => {
 
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
-  app.post(`/${NAME}/test-post`, (req, res) => {
+  app.post(`/${NAME}/party`, (req, res) => {
     let { fullName, attending, plusOne, children } = req.body;
     console.log("-+-+-+--++");
     console.log(req.body);
