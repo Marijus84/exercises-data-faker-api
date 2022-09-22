@@ -35,7 +35,7 @@ const routes = (app) => {
   app.get(`/${NAME}/party`, (req, res) => {
     client.connect();
 
-    client.query("SELECT * FROM public.test", (error, results) => {
+    client.query("SELECT * FROM public.crud", (error, results) => {
       if (error) {
         console.log(error);
         throw error;
@@ -66,7 +66,7 @@ const routes = (app) => {
     client.connect();
 
     client.query(
-      "INSERT INTO public.test (id) VALUES ($1) RETURNING *",
+      "INSERT INTO public.crud (id) VALUES ($1) RETURNING *",
       [id],
       (error, results) => {
         if (error) {
