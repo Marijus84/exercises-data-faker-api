@@ -58,7 +58,7 @@ const routes = (app) => {
     children = parseInt(children);
 
     pool.query(
-      "INSERT INTO public.crud (fullName, attending, plusOne, children) VALUES ($1, $2, $3, $4) RETURNING *",
+      "INSERT INTO public.crud (full_name, attending, plus_one, children) VALUES ($1, $2, $3, $4) RETURNING *",
       [fullName, attending, plusOne, children],
       (error, results) => {
         if (error) {
