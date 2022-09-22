@@ -59,7 +59,7 @@ const routes = (app) => {
 
     pool.query(
       "INSERT INTO public.crud (fullName, attending, plusOne, children) VALUES ($1, $2, $3, $4) RETURNING *",
-      [id],
+      [fullName, attending, plusOne, children],
       (error, results) => {
         if (error) {
           throw error;
