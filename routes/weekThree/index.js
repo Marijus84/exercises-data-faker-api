@@ -59,14 +59,14 @@ const routes = (app) => {
   app.get(`/${NAME}/meme`, (req, res) => res.json(getMeme()));
 
   app.post(`/${NAME}/test-post`, (req, res) => {
-    let { id } = req.body;
+    let { fullName, attending, plusOne, children } = req.body;
     console.log("-+-+-+--++");
     console.log(req.body);
-    id = parseInt(id);
+    children = parseInt(children);
     client.connect();
 
     client.query(
-      "INSERT INTO public.crud (id) VALUES ($1) RETURNING *",
+      "INSERT INTO public.crud (fullName, attending, plusOne, children) VALUES ($1, $2, $3, $4) RETURNING *",
       [id],
       (error, results) => {
         if (error) {
