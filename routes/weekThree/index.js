@@ -37,7 +37,7 @@ const routes = (app) => {
         console.log(error);
         throw error;
       }
-      response.status(200).json(results.rows);
+      res.status(200).json(results.rows);
 
       // console.log("--------------", results.rows[0]);
       // res.status(200);
@@ -64,7 +64,7 @@ const routes = (app) => {
         if (error) {
           throw error;
         }
-        response.status(201).send(`user added`);
+        res.status(201).send(`user added`);
       }
     );
 
