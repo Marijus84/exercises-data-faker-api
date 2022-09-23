@@ -66,10 +66,7 @@ const routes = (app) => {
     console.log("-+-+-+-+-+-+-+");
     console.log(req.params.id);
     console.log("-+-+-+-+-+-+-+");
-
-    // let { fullName, attending, plusOne, children } = req.body;
-    // console.log(req.body);
-    // children = parseInt(children);
+    const { id } = req.params;
 
     try {
       pool.query(
