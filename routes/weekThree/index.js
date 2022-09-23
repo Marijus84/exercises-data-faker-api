@@ -70,7 +70,7 @@ const routes = (app) => {
 
     try {
       pool.query(
-        "DELETE FROM public.crud WHERE guest_id = (guest_id)  VALUES ($1) RETURNING *",
+        'DELETE FROM public.crud WHERE "guest_id" = (guest_id)  VALUES ($1) RETURNING *',
         [id],
         (error, results) => {
           if (error) {
