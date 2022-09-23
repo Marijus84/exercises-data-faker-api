@@ -66,7 +66,8 @@ const routes = (app) => {
             res.status(500).send("Insert failed: " + error);
           }
           if (!error) {
-            res.status(201).send(`user added ${JSON.stringify(results)}`);
+            const data = results.rows[0];
+            res.status(201).send(`user added ${JSON.stringify(data)}`);
           }
         }
       );
