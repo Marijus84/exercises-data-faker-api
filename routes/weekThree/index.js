@@ -89,11 +89,11 @@ const routes = (app) => {
   app.put(`/${NAME}/party/:id`, (req, res) => {
     console.log("-+-+-+-+-+-+-+");
     console.log(req.params.id);
-    console.log(req.params.body);
+    console.log(req.body);
     console.log("-+-+-+-+-+-+-+");
     const { id } = req.params;
     let { fullName, attending, plusOne, children } = req.body;
-    console.log(req.body);
+    console.log(fullName, attending, plusOne, children);
     children = parseInt(children);
 
     try {
