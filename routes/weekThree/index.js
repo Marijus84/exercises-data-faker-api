@@ -62,9 +62,9 @@ const routes = (app) => {
         "INSERT INTO public.crud (full_name, attending, plus_one, children) VALUES ($1, $2, $3, $4) RETURNING *",
         [fullName, attending, plusOne, children],
         (error, results) => {
-          // if (error) {
-          //   throw error;
-          // }
+          if (error) {
+            res.status(500).send("Insert failed");
+          }
           if (!error) {
             res.status(201).send(`user added`);
           }
