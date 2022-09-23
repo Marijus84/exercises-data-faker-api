@@ -76,7 +76,7 @@ const routes = (app) => {
           if (error) {
             res.status(500).send("Delete failed: " + error);
           } else {
-            res.status(204).send(JSON.stringify(results));
+            res.status(201).send(JSON.stringify(results));
           }
         }
       );
