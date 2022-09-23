@@ -85,6 +85,34 @@ const routes = (app) => {
       res.status(500).send("Delete failed: " + error);
     }
   });
+
+  app.put(`/${NAME}/party/:id`, (req, res) => {
+    console.log("-+-+-+-+-+-+-+");
+    console.log(req.params.id);
+    console.log(req.params.body);
+    console.log("-+-+-+-+-+-+-+");
+    const { id } = req.params;
+    let { fullName, attending, plusOne, children } = req.body;
+    console.log(req.body);
+    children = parseInt(children);
+
+    try {
+      pool.query(
+        'UPDATE public.crud SET "full_name" = $2, "attending" = $3, "plus_one" = $4, "children" = $5 WHERE "guest_id" = ($1) RETURNING *',
+        [id, fullName, attending, plusOne, children],
+        (error, results) => {
+          if (error) {
+            res.status(500).send("Update failed: " + error);
+          } else {
+            res.status(201).send(JSON.stringify(results));
+          }
+        }
+      );
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Update failed: " + error);
+    }
+  });
 };
 
 module.exports = routes;
