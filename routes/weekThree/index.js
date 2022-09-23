@@ -104,7 +104,7 @@ const routes = (app) => {
           if (error) {
             res.status(500).send("Update failed: " + error);
           } else {
-            res.status(201).send(JSON.stringify(results));
+            res.status(201).send(JSON.stringify(results.rows[0]));
           }
         }
       );
