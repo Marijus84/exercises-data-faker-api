@@ -71,22 +71,22 @@ const routes = (app) => {
     // console.log(req.body);
     // children = parseInt(children);
 
-    // try {
-    //   pool.query(
-    //     "INSERT INTO public.crud (full_name, attending, plus_one, children) VALUES ($1, $2, $3, $4) RETURNING *",
-    //     [fullName, attending, plusOne, children],
-    //     (error, results) => {
-    //       if (error) {
-    //         res.status(500).send("Insert failed: " + error);
-    //       } else {
-    //         res.status(201).send(JSON.stringify(results.rows[0]));
-    //       }
-    //     }
-    //   );
-    // } catch (error) {
-    //   console.log(error);
-    //   res.status(500).send("Insert failed: " + error);
-    // }
+    try {
+      pool.query(
+        "DELETE FROM public.crud WHERE (guest_id) VALUES ($1) RETURNING *",
+        [id],
+        (error, results) => {
+          if (error) {
+            res.status(500).send("Insert failed: " + error);
+          } else {
+            res.status(204).send(JSON.stringify(results));
+          }
+        }
+      );
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Insert failed: " + error);
+    }
   });
 };
 
