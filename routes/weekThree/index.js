@@ -70,11 +70,11 @@ const routes = (app) => {
 
     try {
       pool.query(
-        "DELETE FROM public.crud WHERE (guest_id) VALUES ($1) RETURNING *",
+        "DELETE FROM public.crud WHERE guest_id = (guest_id)  VALUES ($1) RETURNING *",
         [id],
         (error, results) => {
           if (error) {
-            res.status(500).send("Insert failed: " + error);
+            res.status(500).send("Delete failed: " + error);
           } else {
             res.status(204).send(JSON.stringify(results));
           }
@@ -82,7 +82,7 @@ const routes = (app) => {
       );
     } catch (error) {
       console.log(error);
-      res.status(500).send("Insert failed: " + error);
+      res.status(500).send("Delete failed: " + error);
     }
   });
 };
