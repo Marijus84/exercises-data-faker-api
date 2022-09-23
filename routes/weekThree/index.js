@@ -95,9 +95,9 @@ const routes = (app) => {
         (error, results) => {
           if (error) {
             res.status(500).send("Update failed: " + error);
-          } else {
+          } else if (results.rows[0]) {
             res.status(201).send(JSON.stringify(results.rows[0]));
-          }
+          } else res.status(500).send("Id not found in database");
         }
       );
     } catch (error) {
