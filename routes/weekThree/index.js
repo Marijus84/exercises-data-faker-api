@@ -1,3 +1,4 @@
+const e = require("express");
 const path = require("path");
 const { NAME } = require(path.resolve(__dirname, "constants"));
 const {
@@ -15,15 +16,6 @@ const pool = new Pool({
   },
 });
 
-// const { Client } = require("pg");
-
-// const client = new Client({
-//   connectionString: `postgres://vqgjkxxmxlnuvq:6b219d81fe0b192ca16706e6f72ff084c7d1f341eb92991f030ebb1a8289e45f@ec2-54-155-110-181.eu-west-1.compute.amazonaws.com:5432/d97np0smkrhvot`,
-//   ssl: {
-//     rejectUnauthorized: false,
-//   },
-// });
-
 const routes = (app) => {
   app.get(`/${NAME}/selected`, (req, res) => res.json(generateSelected()));
 
@@ -38,13 +30,9 @@ const routes = (app) => {
         throw error;
       }
       res.status(200).json(results.rows);
-
-      // console.log("--------------", results.rows[0]);
-      // res.status(200);
     });
-    // console.log(1984);
-    // res.status(200).json("i got you");
   });
+
   app.get(`/${NAME}/wedding`, (req, res) =>
     res.json(generatePartyGuests("plusOne"))
   );
@@ -53,7 +41,6 @@ const routes = (app) => {
 
   app.post(`/${NAME}/party`, (req, res) => {
     let { fullName, attending, plusOne, children } = req.body;
-    console.log("-+-+-+--++");
     console.log(req.body);
     children = parseInt(children);
 
@@ -64,10 +51,8 @@ const routes = (app) => {
         (error, results) => {
           if (error) {
             res.status(500).send("Insert failed: " + error);
-          }
-          if (!error) {
-            const data = results.rows[0];
-            res.status(201).send(`user added ${JSON.stringify(data)}`);
+          } else {
+            res.status(201).send(JSON.stringify(results.rows[0]));
           }
         }
       );
@@ -75,12 +60,34 @@ const routes = (app) => {
       console.log(error);
       res.status(500).send("Insert failed: " + error);
     }
+  });
 
-    //console.log(req);
-    // res.send("all good");
+  app.delete(`/${NAME}/party/:id`, (req, res) => {
+    console.log("-+-+-+-+-+-+-+");
+    console.log(req.params.id);
+    console.log("-+-+-+-+-+-+-+");
+
+    // let { fullName, attending, plusOne, children } = req.body;
+    // console.log(req.body);
+    // children = parseInt(children);
+
+    // try {
+    //   pool.query(
+    //     "INSERT INTO public.crud (full_name, attending, plus_one, children) VALUES ($1, $2, $3, $4) RETURNING *",
+    //     [fullName, attending, plusOne, children],
+    //     (error, results) => {
+    //       if (error) {
+    //         res.status(500).send("Insert failed: " + error);
+    //       } else {
+    //         res.status(201).send(JSON.stringify(results.rows[0]));
+    //       }
+    //     }
+    //   );
+    // } catch (error) {
+    //   console.log(error);
+    //   res.status(500).send("Insert failed: " + error);
+    // }
   });
 };
 
 module.exports = routes;
-
-//persidaryti ant async;
