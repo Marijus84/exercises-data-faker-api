@@ -63,7 +63,7 @@ const routes = (app) => {
         [fullName, attending, plusOne, children],
         (error, results) => {
           if (error) {
-            res.status(500).send("Insert failed" + error);
+            res.status(500).send("Insert failed: " + error);
           }
           if (!error) {
             res.status(201).send(`user added`);
@@ -72,7 +72,7 @@ const routes = (app) => {
       );
     } catch (error) {
       console.log(error);
-      res.status(500).send("Insert failed");
+      res.status(500).send("Insert failed: " + error);
     }
 
     //console.log(req);
