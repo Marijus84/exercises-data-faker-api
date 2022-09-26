@@ -29,7 +29,16 @@ const routes = (app) => {
         console.log(error);
         throw error;
       }
-      res.status(200).json(results.rows);
+      const response = results.rows.map((row) => {
+        return {
+          guestId: row.guest_id,
+          fullName: row.full_name,
+          attending: row.attending,
+          plusOne: row.plus_one,
+          children: row.children,
+        };
+      });
+      res.status(200).json(response);
     });
   });
 
@@ -52,7 +61,14 @@ const routes = (app) => {
           if (error) {
             res.status(500).send("Insert failed: " + error);
           } else {
-            res.status(201).send(JSON.stringify(results.rows[0]));
+            const response = {
+              guestId: results.rows[0].guest_id,
+              fullName: results.rows[0].full_name,
+              attending: results.rows[0].attending,
+              plusOne: results.rows[0].plus_one,
+              children: results.rows[0].children,
+            };
+            res.status(201).send(JSON.stringify(response));
           }
         }
       );
@@ -96,8 +112,14 @@ const routes = (app) => {
           if (error) {
             res.status(500).send("Update failed: " + error);
           } else if (results.rows[0]) {
-            console.log(results.rows[0]);
-            res.status(201).send(JSON.stringify(results.rows[0]));
+            const response = {
+              guestId: results.rows[0].guest_id,
+              fullName: results.rows[0].full_name,
+              attending: results.rows[0].attending,
+              plusOne: results.rows[0].plus_one,
+              children: results.rows[0].children,
+            };
+            res.status(201).send(JSON.stringify(response));
           } else res.status(500).send("Id not found in database");
         }
       );
