@@ -10,7 +10,8 @@ const {
 
 const Pool = require("pg").Pool;
 const pool = new Pool({
-  connectionString: `postgres://vqgjkxxmxlnuvq:6b219d81fe0b192ca16706e6f72ff084c7d1f341eb92991f030ebb1a8289e45f@ec2-54-155-110-181.eu-west-1.compute.amazonaws.com:5432/d97np0smkrhvot`,
+  // connectionString: `postgres://vqgjkxxmxlnuvq:6b219d81fe0b192ca16706e6f72ff084c7d1f341eb92991f030ebb1a8289e45f@ec2-54-155-110-181.eu-west-1.compute.amazonaws.com:5432/d97np0smkrhvot`,
+  connectionString: `postgres://faker_zdk9_user:i1mMJG7bukIGK8acL7PdKUJjkB2LjZCE@dpg-cf4qmuhgp3jt5b99kgbg-a/faker_zdk9`,
   ssl: {
     rejectUnauthorized: false,
   },
